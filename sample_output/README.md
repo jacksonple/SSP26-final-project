@@ -1,5 +1,7 @@
 # Sample Output
 
-This directory is reserved for pre-generated reference artifacts.
+This directory now contains one committed example run:
 
-The live pipeline writes pair-specific outputs under `outputs/` by default.
+- `cis-r1_vs_cis-r2/`
+
+Those files are reference artifacts only. The live pipeline still writes pair-specific outputs under `outputs/` by default.

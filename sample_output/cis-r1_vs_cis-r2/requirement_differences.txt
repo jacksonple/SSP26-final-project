@@ -1,0 +1,2 @@
+Access Control,ABSENT-IN-cis-r1-kdes.yaml,PRESENT-IN-cis-r2-kdes.yaml,NA
+Encryption,ABSENT-IN-cis-r2-kdes.yaml,PRESENT-IN-cis-r1-kdes.yaml,NA

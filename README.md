@@ -1,33 +1,58 @@
-# SSP Spring 2026 Final Project
+# COMP 6700 Final Project
 
-## Team
+Final project for Secure Software Process at Auburn University.
 
-- `Jack Plemons` — `jzp0162@auburn.edu`
+## Team Members
 
-## Task-1 LLM
+- `Jack Plemons` - `jzp0162@auburn.edu`
 
-- `google/gemma-3-1b-it`
+## LLM
 
-## Project Summary
+This project uses `google/gemma-3-1b-it` through Hugging Face Transformers for KDE extraction in Task 1.
 
-This project compares two security requirements PDFs, extracts key data elements (KDEs) with Gemma-3-1B using zero-shot, few-shot, and chain-of-thought prompts, computes YAML and requirement differences, maps those differences to Kubescape controls, and scans `project-yamls.zip` to generate a final CSV report.
+## Project Overview
 
-## Repository Layout
+This repository compares two CIS benchmark PDFs, extracts key data elements (KDEs) with zero-shot, few-shot, and chain-of-thought prompting, computes KDE differences, maps those differences to Kubescape controls, and generates a final CSV report from Kubernetes security scans.
 
-- [.github/workflows/ci.yml](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/.github/workflows/ci.yml): GitHub Actions workflow
-- [input_files](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/input_files): the four CIS benchmark PDFs used by the pipeline
-- [sample_output](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/sample_output): reserved location for reference artifacts
-- [task_1.py](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/task_1.py): Task 1 public entrypoint for PDF loading, prompt construction, Gemma extraction, and YAML generation
-- [task_2.py](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/task_2.py): Task 2 public entrypoint for KDE name and requirement comparison
-- [task_3.py](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/task_3.py): Task 3 public entrypoint for Kubescape control mapping, scan execution, and CSV generation
-- [pipeline.py](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/pipeline.py): single-pair pipeline entrypoint
-- [run_all.py](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/run_all.py): batch runner for the nine required PDF pairs
-- [test_task_1.py](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/test_task_1.py), [test_task_2.py](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/test_task_2.py), and [test_task_3.py](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/test_task_3.py): unit tests for the three assignment tasks
-- [test_pipeline.py](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/test_pipeline.py): end-to-end smoke test for the pipeline
-- [PROMPT.md](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/PROMPT.md): the three prompt templates used by Task 1
-- [requirements.txt](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/requirements.txt): pinned Python dependencies
+## Repository Structure
 
-## Setup
+```text
+.
+├── .github/workflows/ci.yml      # GitHub Actions workflow
+├── input_files/                  # CIS benchmark PDFs
+│   ├── cis-r1.pdf
+│   ├── cis-r2.pdf
+│   ├── cis-r3.pdf
+│   └── cis-r4.pdf
+├── sample_output/                # Reference output for one example run
+├── task_1.py                     # Extractor entrypoint
+├── task_2.py                     # Comparator entrypoint
+├── task_3.py                     # Kubescape executor entrypoint
+├── pipeline.py                   # End-to-end pipeline for one PDF pair
+├── run_all.py                    # Runs all 9 required input combinations
+├── test_task_1.py                # Task 1 unit tests
+├── test_task_2.py                # Task 2 unit tests
+├── test_task_3.py                # Task 3 unit tests
+├── test_pipeline.py              # End-to-end smoke test
+├── PROMPT.md                     # Zero-shot, few-shot, and chain-of-thought prompts
+├── requirements.txt              # Python dependencies
+├── project-yamls.zip             # Kubernetes YAMLs for Kubescape scanning
+├── run_project.sh                # Virtualenv-friendly TA runner
+├── build_binary.sh               # PyInstaller build script
+└── ssp_pipeline.spec             # Checked-in PyInstaller spec
+```
+
+Internal implementation files such as `main.py`, `task1_extractor.py`, `task2_comparator.py`, and `task3_executor.py` remain in the repository behind the public task entrypoints.
+
+## Setup And Installation
+
+### Prerequisites
+
+- Python `3.12+`
+- Kubescape installed and available on `PATH`
+- A Hugging Face account with access to `google/gemma-3-1b-it`
+
+### Virtual Environment Setup
 
 ```bash
 python3.12 -m venv .venv
@@ -36,70 +61,31 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Python 3.12 is the recommended local runtime for this project. Python 3.13 may require additional native build tooling for `sentencepiece`.
+### Hugging Face Authentication
 
-## Run The Pipeline
+Authenticate before the first real Task 1 run if the model is not already cached locally:
 
-Run one PDF pair:
+```bash
+huggingface-cli login
+```
+
+## Running The Project
+
+### Option 1: Python For One Input Pair
 
 ```bash
 python pipeline.py input_files/cis-r1.pdf input_files/cis-r2.pdf
 ```
 
-Run all nine assignment pairs:
+### Option 2: Python For All 9 Required Input Combinations
 
 ```bash
 python run_all.py
 ```
 
-Write outputs to a different root directory:
+### Option 3: TA Runner Script
 
-```bash
-python pipeline.py input_files/cis-r1.pdf input_files/cis-r2.pdf --output-dir custom_outputs
-```
-
-Use a non-default YAML archive:
-
-```bash
-python pipeline.py input_files/cis-r1.pdf input_files/cis-r2.pdf --project-yamls-zip /path/to/project-yamls.zip
-```
-
-## Output Layout
-
-Each run creates one pair-specific directory under `outputs/`:
-
-```text
-outputs/
-  cis-r1_vs_cis-r2/
-    cis-r1-kdes.yaml
-    cis-r2-kdes.yaml
-    llm_output.txt
-    name_differences.txt
-    requirement_differences.txt
-    kubescape_controls.txt
-    kubescape_results.csv
-```
-
-If the same PDF is used twice, the KDE files are disambiguated as `doc1-<name>-kdes.yaml` and `doc2-<name>-kdes.yaml`.
-
-## Testing
-
-Run all tests:
-
-```bash
-python -m pytest -q
-```
-
-## GitHub Actions And The `git status` Requirement
-
-GitHub Actions cannot be triggered by a local `git status` command. To satisfy the grading intent, this repository includes:
-
-- a GitHub Actions workflow at [ci.yml](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/.github/workflows/ci.yml) that runs on `push`, `pull_request`, and `workflow_dispatch`
-- a local helper script at [git_status_with_tests.sh](/Users/jackplemons/Downloads/continuous-secsoft/ssp-spr26/project/scripts/git_status_with_tests.sh) that runs the full pytest suite and then runs `git status`
-
-## TA Quick Start
-
-Run everything inside a fresh virtual environment:
+Run the full project inside a Python virtual environment:
 
 ```bash
 ./run_project.sh --run-all-default-pairs
@@ -111,10 +97,83 @@ Run a single pair:
 ./run_project.sh input_files/cis-r1.pdf input_files/cis-r2.pdf
 ```
 
-## Build The PyInstaller Binary
+### Required Input Pairs
+
+| Input | Document 1 | Document 2 |
+| --- | --- | --- |
+| 1 | `cis-r1.pdf` | `cis-r1.pdf` |
+| 2 | `cis-r1.pdf` | `cis-r2.pdf` |
+| 3 | `cis-r1.pdf` | `cis-r3.pdf` |
+| 4 | `cis-r1.pdf` | `cis-r4.pdf` |
+| 5 | `cis-r2.pdf` | `cis-r2.pdf` |
+| 6 | `cis-r2.pdf` | `cis-r3.pdf` |
+| 7 | `cis-r2.pdf` | `cis-r4.pdf` |
+| 8 | `cis-r3.pdf` | `cis-r3.pdf` |
+| 9 | `cis-r3.pdf` | `cis-r4.pdf` |
+
+## Output
+
+The pipeline writes pair-specific artifacts under `outputs/`.
+
+Example:
+
+```text
+outputs/
+└── cis-r1_vs_cis-r2/
+    ├── cis-r1-kdes.yaml
+    ├── cis-r2-kdes.yaml
+    ├── llm_output.txt
+    ├── name_differences.txt
+    ├── requirement_differences.txt
+    ├── kubescape_controls.txt
+    └── kubescape_results.csv
+```
+
+If the same PDF is used twice, Task 1 disambiguates the YAML filenames with `doc1-` and `doc2-` prefixes.
+
+| File | Description | Task |
+| --- | --- | --- |
+| `*-kdes.yaml` | Extracted KDEs for each input PDF | Task 1 |
+| `llm_output.txt` | Logged prompt/output records for all prompt styles | Task 1 |
+| `name_differences.txt` | KDE name differences | Task 2 |
+| `requirement_differences.txt` | KDE requirement differences in README/assignment tuple format | Task 2 |
+| `kubescape_controls.txt` | Selected Kubescape controls or `NO DIFFERENCES FOUND` | Task 3 |
+| `kubescape_results.csv` | Final scan output with the required columns | Task 3 |
+
+An example reference run is committed under `sample_output/cis-r1_vs_cis-r2/`.
+
+## Testing And CI
+
+Run the full test suite locally:
+
+```bash
+python -m pytest -q
+```
+
+Run tests and then print `git status` locally:
+
+```bash
+./scripts/git_status_with_tests.sh
+```
+
+GitHub Actions also runs the test suite on:
+
+- `push`
+- `pull_request`
+- `workflow_dispatch`
+
+## Building The PyInstaller Binary
+
+Build the binary with:
 
 ```bash
 ./build_binary.sh
 ```
 
-The binary will be created in `dist/ssp_pipeline`.
+The generated executable is written to:
+
+```text
+dist/ssp_pipeline
+```
+
+The binary packages the project code and Python dependencies, but Kubescape still needs to be installed on the system. On the first real run, the Gemma model may be downloaded from Hugging Face if it is not already cached.

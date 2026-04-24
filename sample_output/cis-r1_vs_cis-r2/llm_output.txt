@@ -1,0 +1,400 @@
+*LLM Name*
+google/gemma-3-1b-it
+
+*Prompt Used*
+Identify the key data elements (KDEs) in the security document 'cis-r1.pdf'. For each KDE provide its name and the associated requirements. Format output as YAML:
+
+element1:
+  name: <element name>
+  requirements:
+    - <req1>
+    - <req2>
+
+Document:
+CIS Amazon Elastic 
+Kubernetes Service (EKS) 
+Benchmark 
+v1.2.0 - 11-23-2022 
+ 
+ 
+
+Page 1 
+Terms of Use 
+Please see the below link for our current terms of use: 
+https://www.cisecurity.org/cis-securesuite/cis-securesuite-membership-terms-of-use/ 
+
+Page 2 
+Table of Contents 
+Terms of Use .................................................................................................................. 1 
+Table of Contents ........................................................................................................... 2 
+Overview ......................................................................................................................... 5 
+Intended Audience ................................................................................................................... 5 
+Consensus Guidance .............................................................................................................. 6 
+Typographical Conventions .................................................................................................... 7 
+Recommendation Definitions ....................................................................................... 8 
+Title ............................................................................................................................................ 8 
+Assessment Status .................................................................................................................. 8 
+Automated ............................................................................................................................................. 8 
+Manual .................................................................................................................................................... 8 
+Profile ........................................................................................................................................ 8 
+Description ............................................................................................................................... 8 
+Rationale Statement ................................................................................................................. 8 
+Impact Statement ..................................................................................................................... 9 
+Audit Procedure ....................................................................................................................... 9 
+Remediat
+
+YAML output:
+
+*Prompt Type*
+zero_shot
+
+*LLM Output*
+element1:
+  name: Encryption
+  requirements:
+    - Enable TLS
+
+
+================================================================================
+
+*LLM Name*
+google/gemma-3-1b-it
+
+*Prompt Used*
+Example 1:
+Document: '1.1 Users must have unique accounts. 1.2 Passwords must be 12+ characters.'
+Output:
+element1:
+  name: User Accounts
+  requirements:
+    - Users must have unique accounts
+    - Passwords must be 12+ characters
+
+Example 2:
+Document: '2.1 All traffic must be encrypted. 2.2 Use TLS 1.2 or higher.'
+Output:
+element1:
+  name: Network Encryption
+  requirements:
+    - All traffic must be encrypted
+    - Use TLS 1.2 or higher
+
+Now identify KDEs in document 'cis-r1.pdf':
+CIS Amazon Elastic 
+Kubernetes Service (EKS) 
+Benchmark 
+v1.2.0 - 11-23-2022 
+ 
+ 
+
+Page 1 
+Terms of Use 
+Please see the below link for our current terms of use: 
+https://www.cisecurity.org/cis-securesuite/cis-securesuite-membership-terms-of-use/ 
+
+Page 2 
+Table of Contents 
+Terms of Use .................................................................................................................. 1 
+Table of Contents ........................................................................................................... 2 
+Overview ......................................................................................................................... 5 
+Intended Audience ................................................................................................................... 5 
+Consensus Guidance .............................................................................................................. 6 
+Typographical Conventions .................................................................................................... 7 
+Recommendation Definitions ....................................................................................... 8 
+Title ............................................................................................................................................ 8 
+Assessment Status .................................................................................................................. 8 
+Automated ............................................................................................................................................. 8 
+Manual .................................................................................................................................................... 8 
+Profile ........................................................................................................................................ 8 
+Description ............................................................................................................................... 8 
+Rationale Statement ................................................................................................................. 8 
+Impact Statement ..................................................................................................................... 9 
+Audit Procedure ....................................................................................................................... 9 
+Remediat
+
+Output YAML:
+
+*Prompt Type*
+few_shot
+
+*LLM Output*
+element1:
+  name: Encryption
+  requirements:
+    - Enable TLS
+
+
+================================================================================
+
+*LLM Name*
+google/gemma-3-1b-it
+
+*Prompt Used*
+Analyze security document 'cis-r1.pdf' step by step.
+
+Step 1: List all distinct security topics in the document.
+Step 2: For each topic, collect all related requirements.
+Step 3: Assign each topic a short descriptive name (the KDE name).
+Step 4: Output the result as YAML:
+
+element1:
+  name: <KDE name>
+  requirements:
+    - <requirement>
+
+Document:
+CIS Amazon Elastic 
+Kubernetes Service (EKS) 
+Benchmark 
+v1.2.0 - 11-23-2022 
+ 
+ 
+
+Page 1 
+Terms of Use 
+Please see the below link for our current terms of use: 
+https://www.cisecurity.org/cis-securesuite/cis-securesuite-membership-terms-of-use/ 
+
+Page 2 
+Table of Contents 
+Terms of Use .................................................................................................................. 1 
+Table of Contents ........................................................................................................... 2 
+Overview ......................................................................................................................... 5 
+Intended Audience ................................................................................................................... 5 
+Consensus Guidance .............................................................................................................. 6 
+Typographical Conventions .................................................................................................... 7 
+Recommendation Definitions ....................................................................................... 8 
+Title ............................................................................................................................................ 8 
+Assessment Status .................................................................................................................. 8 
+Automated ............................................................................................................................................. 8 
+Manual .................................................................................................................................................... 8 
+Profile ........................................................................................................................................ 8 
+Description ............................................................................................................................... 8 
+Rationale Statement ................................................................................................................. 8 
+Impact Statement ..................................................................................................................... 9 
+Audit Procedure ....................................................................................................................... 9 
+Remediat
+
+Follow steps 1-4 and produce the YAML output:
+
+*Prompt Type*
+chain_of_thought
+
+*LLM Output*
+element1:
+  name: Encryption
+  requirements:
+    - Enable TLS
+
+
+================================================================================
+
+*LLM Name*
+google/gemma-3-1b-it
+
+*Prompt Used*
+Identify the key data elements (KDEs) in the security document 'cis-r2.pdf'. For each KDE provide its name and the associated requirements. Format output as YAML:
+
+element1:
+  name: <element name>
+  requirements:
+    - <req1>
+    - <req2>
+
+Document:
+ 
+Internal Only - General
+CIS Amazon Elastic 
+Kubernetes Service (EKS) 
+Benchmark 
+v1.6.0 - 12-23-2024 
+ 
+ 
+
+Page 1 
+Internal Only - General
+Terms of Use 
+Please see the below link for our current terms of use: 
+https://www.cisecurity.org/cis-securesuite/cis-securesuite-membership-terms-of-use/ 
+ 
+For information on referencing and/or citing CIS Benchmarks in 3rd party documentation 
+(including using portions of Benchmark Recommendations) please contact CIS Legal 
+(CISLegal@cisecurity.org) and request guidance on copyright usage.  
+NOTE:  It is NEVER acceptable to host a CIS Benchmark in ANY format (PDF, etc.) 
+on a 3rd party (non-CIS owned) site. 
+
+Page 2 
+Internal Only - General
+Table of Contents 
+Terms of Use ..................................................................................................................... 1 
+Table of Contents ............................................................................................................. 2 
+Overview ............................................................................................................................ 5 
+Important Usage Information .................................................................................................... 5 
+Key Stakeholders.................................................................................................................................... 5 
+Apply the Correct Version of a Benchmark ......................................................................................... 6 
+Exceptions ............................................................................................................................................... 6 
+Remediation ............................................................................................................................................ 7 
+Summary.................................................................................................................................................. 7 
+Target Technology Details ........................................................................................................ 8 
+Intended Audience ..................................................................................................................... 8 
+Consensus Guidance ................................................................................................................. 9 
+Typographical Conventions .................................................................
+
+YAML output:
+
+*Prompt Type*
+zero_shot
+
+*LLM Output*
+element1:
+  name: Access Control
+  requirements:
+    - Review RBAC
+
+
+================================================================================
+
+*LLM Name*
+google/gemma-3-1b-it
+
+*Prompt Used*
+Example 1:
+Document: '1.1 Users must have unique accounts. 1.2 Passwords must be 12+ characters.'
+Output:
+element1:
+  name: User Accounts
+  requirements:
+    - Users must have unique accounts
+    - Passwords must be 12+ characters
+
+Example 2:
+Document: '2.1 All traffic must be encrypted. 2.2 Use TLS 1.2 or higher.'
+Output:
+element1:
+  name: Network Encryption
+  requirements:
+    - All traffic must be encrypted
+    - Use TLS 1.2 or higher
+
+Now identify KDEs in document 'cis-r2.pdf':
+ 
+Internal Only - General
+CIS Amazon Elastic 
+Kubernetes Service (EKS) 
+Benchmark 
+v1.6.0 - 12-23-2024 
+ 
+ 
+
+Page 1 
+Internal Only - General
+Terms of Use 
+Please see the below link for our current terms of use: 
+https://www.cisecurity.org/cis-securesuite/cis-securesuite-membership-terms-of-use/ 
+ 
+For information on referencing and/or citing CIS Benchmarks in 3rd party documentation 
+(including using portions of Benchmark Recommendations) please contact CIS Legal 
+(CISLegal@cisecurity.org) and request guidance on copyright usage.  
+NOTE:  It is NEVER acceptable to host a CIS Benchmark in ANY format (PDF, etc.) 
+on a 3rd party (non-CIS owned) site. 
+
+Page 2 
+Internal Only - General
+Table of Contents 
+Terms of Use ..................................................................................................................... 1 
+Table of Contents ............................................................................................................. 2 
+Overview ............................................................................................................................ 5 
+Important Usage Information .................................................................................................... 5 
+Key Stakeholders.................................................................................................................................... 5 
+Apply the Correct Version of a Benchmark ......................................................................................... 6 
+Exceptions ............................................................................................................................................... 6 
+Remediation ............................................................................................................................................ 7 
+Summary.................................................................................................................................................. 7 
+Target Technology Details ........................................................................................................ 8 
+Intended Audience ..................................................................................................................... 8 
+Consensus Guidance ................................................................................................................. 9 
+Typographical Conventions .................................................................
+
+Output YAML:
+
+*Prompt Type*
+few_shot
+
+*LLM Output*
+element1:
+  name: Access Control
+  requirements:
+    - Review RBAC
+
+
+================================================================================
+
+*LLM Name*
+google/gemma-3-1b-it
+
+*Prompt Used*
+Analyze security document 'cis-r2.pdf' step by step.
+
+Step 1: List all distinct security topics in the document.
+Step 2: For each topic, collect all related requirements.
+Step 3: Assign each topic a short descriptive name (the KDE name).
+Step 4: Output the result as YAML:
+
+element1:
+  name: <KDE name>
+  requirements:
+    - <requirement>
+
+Document:
+ 
+Internal Only - General
+CIS Amazon Elastic 
+Kubernetes Service (EKS) 
+Benchmark 
+v1.6.0 - 12-23-2024 
+ 
+ 
+
+Page 1 
+Internal Only - General
+Terms of Use 
+Please see the below link for our current terms of use: 
+https://www.cisecurity.org/cis-securesuite/cis-securesuite-membership-terms-of-use/ 
+ 
+For information on referencing and/or citing CIS Benchmarks in 3rd party documentation 
+(including using portions of Benchmark Recommendations) please contact CIS Legal 
+(CISLegal@cisecurity.org) and request guidance on copyright usage.  
+NOTE:  It is NEVER acceptable to host a CIS Benchmark in ANY format (PDF, etc.) 
+on a 3rd party (non-CIS owned) site. 
+
+Page 2 
+Internal Only - General
+Table of Contents 
+Terms of Use ..................................................................................................................... 1 
+Table of Contents ............................................................................................................. 2 
+Overview ............................................................................................................................ 5 
+Important Usage Information .................................................................................................... 5 
+Key Stakeholders.................................................................................................................................... 5 
+Apply the Correct Version of a Benchmark ......................................................................................... 6 
+Exceptions ............................................................................................................................................... 6 
+Remediation ............................................................................................................................................ 7 
+Summary.................................................................................................................................................. 7 
+Target Technology Details ........................................................................................................ 8 
+Intended Audience ..................................................................................................................... 8 
+Consensus Guidance ................................................................................................................. 9 
+Typographical Conventions .................................................................
+
+Follow steps 1-4 and produce the YAML output:
+
+*Prompt Type*
+chain_of_thought
+
+*LLM Output*
+element1:
+  name: Access Control
+  requirements:
+    - Review RBAC
+
+
+================================================================================
+

@@ -1,0 +1,4 @@
+element1:
+  name: Encryption
+  requirements:
+  - Enable TLS
