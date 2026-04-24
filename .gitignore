@@ -1,0 +1,10 @@
+.claude/
+.DS_Store
+__pycache__/
+.pytest_cache/
+.venv/
+.venv312/
+build/
+dist/
+outputs/
+demo_output/

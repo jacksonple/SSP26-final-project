@@ -1,0 +1,12 @@
+PyMuPDF==1.25.5
+PyYAML==6.0.2
+pandas==2.2.3
+transformers==4.51.3
+accelerate==1.5.2
+torch==2.5.1; platform_system == "Darwin"
+torch==2.6.0; platform_system != "Darwin"
+sentencepiece==0.2.0
+safetensors==0.5.3
+protobuf==5.29.3
+pytest==8.3.5
+pyinstaller==6.12.0
