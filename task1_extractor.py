@@ -21,7 +21,7 @@ except ImportError:
         PDF_BACKEND = None
 
 LLM_NAME = "google/gemma-3-1b-it"
-MAX_TEXT_CHARS = 2500
+MAX_TEXT_CHARS = 6000
 PROMPT_TYPES = ("zero_shot", "few_shot", "chain_of_thought")
 
 ZERO_SHOT_TEMPLATE = (
